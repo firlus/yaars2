@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int       @id @default(autoincrement())
+  name     String    @unique @db.VarChar(255)
+  password String    @db.VarChar(255)
+  role     String    @db.Char(1)
+  lectures Lecture[] @relation(name: "UserLectures")
+}
+
+model Lecture {
+  id     Int    @id @default(autoincrement())
+  name   String @db.VarChar(255)
+  byUser User   @relation(name: "UserLectures", fields: [userId], references: [id])
+  polls  Poll[] @relation(name: "LecturePolls")
+  userId Int
+}
+
+model Poll {
+  id            Int            @id @default(autoincrement())
+  question      String         @db.VarChar(255)
+  type          String         @db.VarChar(1)
+  forLecture    Lecture        @relation(name: "LecturePolls", fields: [lectureId], references: [id])
+  lectureId     Int
+  isRunning     Boolean        @default(false)
+  answerOptions AnswerOption[] @relation(name: "PollAnswerOptions")
+  participants  Participant[]  @relation(name: "PollParticipants")
+}
+
+model AnswerOption {
+  id      Int      @id @default(autoincrement())
+  text    String   @db.VarChar(255)
+  forPoll Poll     @relation(name: "PollAnswerOptions", fields: [pollId], references: [id], onDelete: Cascade)
+  pollId  Int
+  answers Answer[] @relation(name: "PollAnswers")
+}
+
+model Answer {
+  id              Int          @id @default(autoincrement())
+  clientId        String       @db.VarChar(255)
+  forAnswerOption AnswerOption @relation(name: "PollAnswers", fields: [answerOptionId], references: [id])
+  answerOptionId  Int
+
+  @@unique([clientId, answerOptionId])
+}
+
+model Participant {
+  clientId String
+  forPoll  Poll   @relation(name: "PollParticipants", fields: [pollId], references: [id])
+  pollId   Int
+
+  @@id([clientId, pollId])
+}

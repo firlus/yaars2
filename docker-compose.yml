@@ -1,0 +1,52 @@
+version: "3.8"
+services:
+  db-setup:
+    container_name: db-setup
+    build:
+      context: backend/prisma
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_USER}?schema=public
+      INITIAL_USERNAME: ${INITIAL_USERNAME}
+      INITIAL_PASSWORD: ${INITIAL_PASSWORD}
+    depends_on:
+      - db
+
+  db:
+    image: postgres:14.1-alpine
+    container_name: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+  backend:
+    container_name: backend
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_USER}?schema=public
+    depends_on:
+      - db
+      - db-setup
+
+  admin:
+    container_name: admin
+    build: ./admin
+    environment:
+      REACT_APP_HOSTNAME: ${HOSTNAME}
+    ports:
+      - 8001:3000
+
+  frontend:
+    container_name: frontend
+    build: ./yaars2-client
+    environment:
+      REACT_APP_HOSTNAME: ${HOSTNAME}
+    ports:
+      - 80:3000
