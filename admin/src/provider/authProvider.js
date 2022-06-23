@@ -19,7 +19,7 @@ const authProvider = {
   // when the user navigates, make sure that their credentials are still valid
   checkAuth: (params) =>
     axios
-      .post("http://localhost:5000/auth/verify", {
+      .post(`http://${process.env.REACT_APP_HOSTNAME}:5000/auth/login`, {
         token: localStorage.getItem("jwt"),
       })
       .then((res) => {
