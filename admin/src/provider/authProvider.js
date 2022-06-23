@@ -3,7 +3,7 @@ import axios from "axios";
 const authProvider = {
   login: (params) =>
     axios
-      .post("http://localhost:5000/auth/login", {
+      .post(`http://${process.env.REACT_APP_HOSTNAME}:5000/auth/login`, {
         name: params.username,
         password: params.password,
       })
