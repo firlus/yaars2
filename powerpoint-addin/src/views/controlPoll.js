@@ -88,7 +88,7 @@ export default function ControlPoll({ sendEvent }) {
           <QRCode
             value={`http://${
               process.env.REACT_APP_HOSTNAME
-            }:3000/${localStorage.getItem("lectureId")}`}
+            }/${localStorage.getItem("lectureId")}`}
           />
         )}
       </div>
