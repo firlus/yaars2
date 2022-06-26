@@ -146,7 +146,7 @@ export default function Lecture(props) {
     } else if (state === WAITING) {
       return (
         <>
-          <div className="text-lg font-bold mb-12 text-gray-600">
+          <div className="text-lg font-bold mb-12 text-gray-600 text-center">
             There is currently no open poll in this lecture.
           </div>
           <div className="w-72 mb-12">
