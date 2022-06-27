@@ -1,7 +1,7 @@
 ---
 title: "Installation"
 date: 2022-06-27T11:20:27+02:00
-draft: true
+draft: false
 ---
 
 ## Production
