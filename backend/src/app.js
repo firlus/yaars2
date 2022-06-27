@@ -4,6 +4,7 @@ import cors from "cors";
 import http from "http";
 import https from "https";
 import { Server } from "socket.io";
+import fs from "fs";
 
 // Middlewares
 import checkJwt from "./middleware/checkJwt.js";
