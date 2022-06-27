@@ -24,14 +24,12 @@ const httpClient = (url, options = {}) => {
     authenticated: true,
     token: localStorage.getItem("jwt"),
   };
-  return fetchUtils.fetchJson(url, options);
+  const hostname = localStorage.getItem("backendUrl");
+  const newUrl = url.replace("%replace%", hostname);
+  return fetchUtils.fetchJson(newUrl, options);
 };
 
-const hostname = process.env.REACT_APP_HOSTNAME || "localhost";
-
-console.log(hostname);
-
-const dataProvider = jsonServerProvider(`http://${hostname}:5000`, httpClient);
+const dataProvider = jsonServerProvider(`https://%replace%`, httpClient);
 
 const App = () => (
   <Admin

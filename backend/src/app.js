@@ -20,10 +20,8 @@ import participateController from "./controller/participateController.js";
 
 // Server setup
 
-console.log(files);
-
 const app = express();
-const server = http.createServer(options, app);
+const server = http.createServer(app);
 const io = new Server(server);
 app.use((req, res, next) => {
   req.io = io;
