@@ -19,6 +19,10 @@ import presentController from "./controller/presentController.js";
 import participateController from "./controller/participateController.js";
 
 // Server setup
+
+const files = fs.readdirSync("/app/ssl/");
+console.log(files);
+
 const options = {
   key: fs.readFileSync("/app/ssl/fullchain.pem"),
   cert: fs.readFileSync("/app/ssl/privkey.pem"),
