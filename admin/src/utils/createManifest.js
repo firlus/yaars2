@@ -36,7 +36,7 @@ export default function createManifest(hostname, username, jwt) {
   <Host Name="Presentation" />
 </Hosts>
 <DefaultSettings>
-  <SourceLocation DefaultValue="http://${hostname}:3000/?jwt=${jwt}" />
+  <SourceLocation DefaultValue="http://${hostname}:8002/?jwt=${jwt}" />
   <RequestedWidth>400</RequestedWidth>
   <RequestedHeight>400</RequestedHeight>
 </DefaultSettings>
