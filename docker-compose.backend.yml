@@ -28,7 +28,7 @@ services:
       context: backend
       dockerfile: Dockerfile
     volumes:
-      - "/etc/letsencrypt/live/backend.yaa.rs:/app/ssl:rw"
+      - "/etc/letsencrypt/archive/backend.yaa.rs:/app/ssl:rw"
     ports:
       - "5000:5000"
     environment:
