@@ -24,8 +24,8 @@ const files = fs.readdirSync("/app/ssl/");
 console.log(files);
 
 const options = {
-  key: fs.readFileSync("/app/ssl/privkey.pem"),
-  cert: fs.readFileSync("/app/ssl/cert.pem"),
+  key: fs.readFileSync("/app/ssl/privkey1.pem"),
+  cert: fs.readFileSync("/app/ssl/cert1.pem"),
 };
 const app = express();
 const server = https.createServer(options, app);
