@@ -2,6 +2,7 @@ import bodyParser from "body-parser";
 import express from "express";
 import cors from "cors";
 import http from "http";
+import https from "https";
 import { Server } from "socket.io";
 
 // Middlewares
@@ -16,9 +17,13 @@ import pollsController from "./controller/pollsController.js";
 import presentController from "./controller/presentController.js";
 import participateController from "./controller/participateController.js";
 
-// Socket.io setup
+// Server setup
+const options = {
+  key: fs.readFileSync("./../ssl/fullchain.pem"),
+  cert: fs.readFileSync("./../ssl/privkey.pem"),
+};
 const app = express();
-const server = http.createServer(app);
+const server = https.createServer(options, app);
 const io = new Server(server);
 app.use((req, res, next) => {
   req.io = io;
