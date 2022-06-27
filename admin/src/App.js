@@ -1,12 +1,5 @@
 import * as React from "react";
-import {
-  Admin,
-  ListGuesser,
-  Resource,
-  fetchUtils,
-  EditGuesser,
-  Login,
-} from "react-admin";
+import { Admin, Resource, fetchUtils, Login } from "react-admin";
 import jsonServerProvider from "ra-data-json-server";
 
 import UserIcon from "@mui/icons-material/Group";

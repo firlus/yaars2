@@ -1,10 +1,4 @@
-import {
-  Edit,
-  ReferenceInput,
-  SelectInput,
-  SimpleForm,
-  TextInput,
-} from "react-admin";
+import { Edit, SimpleForm, TextInput } from "react-admin";
 
 export const LectureEdit = () => (
   <Edit>

@@ -1,10 +1,4 @@
-import {
-  Create,
-  ReferenceInput,
-  SelectInput,
-  SimpleForm,
-  TextInput,
-} from "react-admin";
+import { Create, SimpleForm, TextInput } from "react-admin";
 
 export const LectureCreate = () => (
   <Create>
