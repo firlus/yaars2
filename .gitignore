@@ -3,3 +3,4 @@ backend/node_modules/
 client/node_modules/
 powerpoint/node_modules/
 powerpoint-addin/node_modules/
+docs/public
