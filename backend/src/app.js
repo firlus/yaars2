@@ -20,8 +20,8 @@ import participateController from "./controller/participateController.js";
 
 // Server setup
 const options = {
-  key: fs.readFileSync("./../ssl/fullchain.pem"),
-  cert: fs.readFileSync("./../ssl/privkey.pem"),
+  key: fs.readFileSync("./ssl/fullchain.pem"),
+  cert: fs.readFileSync("./ssl/privkey.pem"),
 };
 const app = express();
 const server = https.createServer(options, app);
